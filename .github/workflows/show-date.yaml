@@ -1,0 +1,10 @@
+  name: Show date
+  on:
+    push:
+      branches:
+        - master
+  jobs:
+    show-date:
+      runs-on: ubuntu-18.04
+      steps:
+        - run: echo $(date)
