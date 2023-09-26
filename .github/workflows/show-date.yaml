@@ -1,8 +1,5 @@
   name: Show date
-  on:
-    push:
-      branches:
-        - master
+  on: push
   jobs:
     show-date:
       runs-on: ubuntu-18.04
