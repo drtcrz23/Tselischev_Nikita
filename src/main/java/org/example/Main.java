@@ -8,10 +8,10 @@ import org.example.food.Grass;
 public class Main {
     public static void main(String[] args) {
         Tiger tiger = new Tiger(17, "Alesha", true);
-        Horse horse = new Horse(7,"Mikhail",false);
-        Camel camel = new Camel(5,"Petr",false);
-        Dolphin dolphin = new Dolphin(14,"Bogdan" , true);
-        Eagle eagle = new Eagle(3,"Alex", true);
+        Horse horse = new Horse(7, "Mikhail", false);
+        Camel camel = new Camel(5, "Petr", false);
+        Dolphin dolphin = new Dolphin(14, "Bogdan", true);
+        Eagle eagle = new Eagle(3, "Alex", true);
         Beef beef = new Beef();
         Fish fish = new Fish();
         Grass grass = new Grass();
