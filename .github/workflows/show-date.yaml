@@ -1,0 +1,8 @@
+  name: Show date
+  on: push
+  jobs:
+    show-date:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Show date
+          run: echo $(date)
