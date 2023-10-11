@@ -9,5 +9,8 @@
         <module name="zoopark" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="my-test-project" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
