@@ -12,7 +12,6 @@
     <bytecodeTargetLevel>
       <module name="my-test-project" target="17" />
       <module name="task-3" target="17" />
-      <module name="zoopark" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
