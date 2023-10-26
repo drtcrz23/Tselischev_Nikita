@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="java-unit-tests-example" />
+        <module name="task-3" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
