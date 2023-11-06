@@ -25,7 +25,7 @@ class Main {
             array.add(value);
         }
 
-        List<Integer> result = sorter.sort(array, SortsType.Bubble);
+        List<Integer> result = sorter.sort(array, SortsType.Merge);
 
         System.out.println(Arrays.toString(result.toArray()));
     }
