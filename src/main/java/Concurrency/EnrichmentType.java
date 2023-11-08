@@ -1,2 +1,5 @@
-package Concurrency;public enum enrichmentType {
+package Concurrency;
+
+public enum EnrichmentType {
+  MSISDN;
 }

@@ -1,24 +1,16 @@
 package Concurrency;
 
-import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class Repository implements UserRepository{
+public class HashMapUserRepository implements UserRepository {
+  private final ConcurrentHashMap<String, User> user;
 
-//  public Map<String, String> enrich(Map<String, String> input) {
-//    Map<String, String> result = new HashMap<>(input);
-//    result.put("firstName", "Vasya");
-//    result.put("lastName", "Ivanov");
-//    return result;
-//  }
-
-  private final HashMap<String, User> user = new HashMap<>();
-//  @Override
-//  public Optional<User> findUser(String numberPhone) {
-//    return Optional.empty();
-//  }
+  public HashMapUserRepository(ConcurrentHashMap<String, User> user) {
+    this.user = user;
+  }
 
   @Override
-  public User findByMsisdn(String msisdn) {
-    return UserRepository.Users.get(msisdn);
+  public User findByMsisdn(String numberPhone) {
+    return user.get(numberPhone);
   }
 }
