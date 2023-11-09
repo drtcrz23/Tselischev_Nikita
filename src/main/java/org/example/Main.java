@@ -1,31 +1,32 @@
 package org.example;
 
-import org.example.animals.*;
-import org.example.food.Beef;
-import org.example.food.Fish;
-import org.example.food.Grass;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
-        Tiger tiger = new Tiger(17, "Alesha", true);
-        Horse horse = new Horse(7, "Mikhail", false);
-        Camel camel = new Camel(5, "Petr", false);
-        Dolphin dolphin = new Dolphin(14, "Bogdan", true);
-        Eagle eagle = new Eagle(3, "Alex", true);
-        Beef beef = new Beef();
-        Fish fish = new Fish();
-        Grass grass = new Grass();
-        tiger.eat(grass);
-        horse.eat(grass);
-        eagle.eat(beef);
-        camel.eat(beef);
-        tiger.eat(fish);
-        dolphin.eat(fish);
-        dolphin.eat((grass));
-        dolphin.go();
-        tiger.go();
-        camel.go();
-        eagle.go();
-        horse.go();
+        var sorter = new ArraysSorting(List.of(
+                new BubbleSort(5),
+                new MergeSort(100)
+        ));
+
+        Scanner scanner = new Scanner(System.in);
+
+        ArrayList<Integer> array = new ArrayList<Integer>();
+
+        System.out.println("Введите значения (вводите по одному числу в каждой строке, для завершения ввода введите '0'):");
+        while (true) {
+            int value = scanner.nextInt();
+            if (value == 0) {
+                break;
+            }
+            array.add(value);
+        }
+
+        List<Integer> result = sorter.sort(array, SortsType.Merge);
+
+        System.out.println(Arrays.toString(result.toArray()));
     }
 }
