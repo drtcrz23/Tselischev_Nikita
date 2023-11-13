@@ -12,10 +12,4 @@ public class HashMapUserRepository implements UserRepository {
   public User findByMsisdn(String numberPhone) {
     return users.get(numberPhone);
   }
-
-  @Override
-  public void updateUserByMsisdn(String msisdn, User user) {
-    users.put(msisdn, user);
-  }
-
 }
