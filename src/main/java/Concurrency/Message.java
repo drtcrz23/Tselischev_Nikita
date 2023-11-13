@@ -10,4 +10,8 @@ public class Message {
     this.content = content;
     this.enrichmentType = enrichmentType;
   }
+
+  public Map<String, String> getContent() {
+    return content;
+  }
 }

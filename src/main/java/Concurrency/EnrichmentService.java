@@ -3,11 +3,11 @@ package Concurrency;
 import java.util.List;
 
 public class EnrichmentService {
-  private final UserRepository repository;
+//  private final UserRepository repository;
   List<EnrichmentStrategy> strategies;
-
-  public EnrichmentService(UserRepository repository, List<EnrichmentStrategy> strategies) {
-    this.repository = repository;
+//  public EnrichmentService(UserRepository repository, List<EnrichmentStrategy> strategies) {
+  public EnrichmentService(List<EnrichmentStrategy> strategies) {
+//    this.repository = repository;
     this.strategies = strategies;
   }
 
