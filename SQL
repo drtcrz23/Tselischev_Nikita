@@ -3,6 +3,12 @@ SELECT COUNT(profile_id) AS answer_users
 FROM profile 
 WHERE profile_id NOT IN(SELECT profile_id FROM post)
 
+//First Request 2.0
+SELECT COUNT(profile.profile_id)
+FROM profile
+LEFT JOIN post ON profile.profile_id = post.profile_id
+WHERE post.post_id IS NULL;
+
 
 //Second Request
 SELECT post.post_id
