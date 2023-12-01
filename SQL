@@ -1,0 +1,31 @@
+//First Request
+SELECT COUNT(profile_id) AS answer_users 
+FROM profile 
+WHERE profile_id NOT IN(SELECT profile_id FROM post)
+
+//First Request 2.0
+SELECT COUNT(profile.profile_id)
+FROM profile
+LEFT JOIN post ON profile.profile_id = post.profile_id
+WHERE post.post_id IS NULL;
+
+
+//Second Request
+SELECT post.post_id
+FROM post
+LEFT JOIN comment ON post.post_id = comment.post_id
+GROUP BY post.post_id
+HAVING COUNT(comment.comment_id) = 2
+  AND post.title ~ '^\d'
+    AND LENGTH(post.content) > 20
+ORDER BY post.post_id;
+
+
+//Third Request
+SELECT post.post_id 
+FROM post
+LEFT JOIN comment ON post.post_id = comment.post_id
+GROUP BY post.post_id
+HAVING COUNT(comment.comment_id) <= 1
+ORDER BY post.post_id
+LIMIT 10;
