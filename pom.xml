@@ -66,6 +66,16 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.7</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*Main.*</exclude>
+                        <exclude>**/*Application.*</exclude>
+                        <exclude>**/responses/*</exclude>
+                        <exclude>**/template/*</exclude>
+                        <exclude>**/*exception/*</exclude>
+                        <exclude>**/*ArticleFreemarkerController.*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -92,7 +102,7 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.00</minimum>
+                                            <minimum>0.60</minimum>
                                         </limit>
                                     </limits>
                                 </rule>

@@ -26,10 +26,10 @@ public class ArticleFreemarkerController implements Controller {
 
   @Override
   public void initializeEndpoints() {
-    getAllBooks();
+    getAllArticles();
   }
 
-  private void getAllBooks() {
+  private void getAllArticles() {
     service.get(
             "/",
             (Request request, Response response) -> {

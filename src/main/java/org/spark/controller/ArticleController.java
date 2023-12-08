@@ -51,6 +51,7 @@ public class ArticleController implements Controller {
     service.get("/api/articles", (Request request, Response response) -> {
       response.type("application/json");
       LOG.debug("Articles received");
+      response.status(201);
       return objectMapper.writeValueAsString(articleService.findAll());
     });
   }
@@ -163,10 +164,10 @@ public class ArticleController implements Controller {
 
   private void deleteComment() {
     service.delete(
-            "api/articles/comments/delete/:commentId",
+            "api/articles/:articleId/comments/:commentId",
             (Request request, Response response) -> {
               response.type("application/json");
-              String articleId= request.params(":articleId");
+              String articleId = request.params(":articleId");
               String commentId = request.params(":commentId");
 
               try {

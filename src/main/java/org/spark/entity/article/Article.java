@@ -22,7 +22,7 @@ public class Article {
     this.comments = comments;
   }
 
-  public ArticleId getarticleId() {
+  public ArticleId getArticleId() {
     return articleId;
   }
 
@@ -55,7 +55,7 @@ public class Article {
   }
   public void deleteComment(CommentId commentId) {
     for (Comment comment: comments) {
-      if (commentId.equals(comment.getcommentId())) {
+      if (commentId.equals(comment.getСommentId())) {
         comments.remove(comment);
         return;
       }

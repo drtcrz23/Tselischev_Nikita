@@ -32,15 +32,15 @@ public class InMemoryArticleRepository implements ArticleRepository {
   }
   @Override
   public synchronized void create(Article article) {
-    if (articlesMap.get(article.getarticleId()) != null) {
-      throw new ArticleIdIsDuplicateException("Article with the given id already exists: " + article.getarticleId());
+    if (articlesMap.get(article.getArticleId()) != null) {
+      throw new ArticleIdIsDuplicateException("Article with the given id already exists");
     }
-    articlesMap.put(article.getarticleId(), article);
+    articlesMap.put(article.getArticleId(), article);
   }
   @Override
   public synchronized void update(ArticleId articleId, String name, List<String> tags) {
     Article article = findById(articleId);
-    articlesMap.put(article.getarticleId(), article.withName(name).withTags(tags));
+    articlesMap.put(article.getArticleId(), article.withName(name).withTags(tags));
   }
   @Override
   public synchronized void delete(ArticleId articleId) {
