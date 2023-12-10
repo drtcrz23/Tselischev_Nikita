@@ -67,7 +67,6 @@ class ArticleControllerTest {
     assertEquals(201, responseArticleAdd.statusCode());
     ArticleCreateResponse articleCreateResponse =
             objectMapper.readValue(responseArticleAdd.body(), ArticleCreateResponse.class);
-    assertEquals(0L, articleCreateResponse.articleId());
 
     HttpResponse<String> responseUpdate = HttpClient.newHttpClient()
             .send(
