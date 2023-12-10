@@ -77,7 +77,7 @@ class ArticleControllerTest {
                                                     { "name": "monday", "tags": ["morning", "evening"] }"""
                                     )
                             )
-                            .uri(URI.create("http://localhost:%d/api/articles/update/%d".formatted(service.port(), 0L)))
+                            .uri(URI.create("http://localhost:%d/api/articles/update/%d".formatted(service.port(), articleCreateResponse.articleId())))
                             .build(),
                     BodyHandlers.ofString(UTF_8)
             );
@@ -97,7 +97,7 @@ class ArticleControllerTest {
                                                     """
                                     )
                             )
-                            .uri(URI.create("http://localhost:%d/api/articles/%d/comments".formatted(service.port(), 0L)))
+                            .uri(URI.create("http://localhost:%d/api/articles/%d/comments".formatted(service.port(), articleCreateResponse.articleId())))
                             .build(),
                     HttpResponse.BodyHandlers.ofString(UTF_8)
             );
@@ -105,13 +105,12 @@ class ArticleControllerTest {
     assertEquals(201, responseCommentAdd.statusCode());
     CommentAddResponse commentAddResponse =
             objectMapper.readValue(responseCommentAdd.body(), CommentAddResponse.class);
-    assertEquals(0L, commentAddResponse.commentId());
 
     HttpResponse<String> responseCommentDelete = HttpClient.newHttpClient()
             .send(
                     HttpRequest.newBuilder()
                             .DELETE()
-                            .uri(URI.create("http://localhost:%d/api/articles/%d/comments/%d".formatted(service.port(), 0L, 0L)))
+                            .uri(URI.create("http://localhost:%d/api/articles/%d/comments/%d".formatted(service.port(), articleCreateResponse.articleId(), commentAddResponse.commentId())))
                             .build(),
                     HttpResponse.BodyHandlers.ofString(UTF_8)
             );
@@ -133,7 +132,7 @@ class ArticleControllerTest {
             .send(
                     HttpRequest.newBuilder()
                             .DELETE()
-                            .uri(URI.create("http://localhost:%d/api/articles/%d".formatted(service.port(), 0L)))
+                            .uri(URI.create("http://localhost:%d/api/articles/%d".formatted(service.port(), articleCreateResponse.articleId())))
                             .build(),
                     HttpResponse.BodyHandlers.ofString(UTF_8)
             );

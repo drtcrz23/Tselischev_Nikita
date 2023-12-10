@@ -140,7 +140,7 @@ public class ArticleController implements Controller {
             "api/articles/:articleId/comments",
             (Request request, Response response) -> {
               response.type("application/json");
-              String id = request.params("articleId");
+              String id = request.params(":articleId");
               String body = request.body();
               CommentAddRequest commentAddRequest = objectMapper.readValue(body, CommentAddRequest.class);
 
