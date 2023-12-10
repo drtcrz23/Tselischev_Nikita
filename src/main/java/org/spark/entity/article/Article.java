@@ -46,12 +46,15 @@ public class Article {
     return new Article(this.articleId, newName, this.tags, this.comments);
   }
 
-  public CommentId getNewCommentId() {
-    return new CommentId(nextCommentId.getAndIncrement());
-  }
+//  public CommentId getNewCommentId() {
+//    return new CommentId(nextCommentId.getAndIncrement());
+//  }
 
-  public synchronized void addComment(Comment comment) {
+  public synchronized CommentId addComment(String text, ArticleId articleId) {
+    var commentId = new CommentId(nextCommentId.getAndIncrement());
+    Comment comment = new Comment(text, commentId, articleId);
     comments.add(comment);
+    return commentId;
   }
   public void deleteComment(CommentId commentId) {
     for (Comment comment: comments) {

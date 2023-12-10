@@ -88,7 +88,7 @@ public class ArticleController implements Controller {
             (Request request, Response response) -> {
               response.type("application/json");
               String body = request.body();
-              String articleId = request.params(":articleId");
+              String articleId = request.params("articleId");
               ArticleUpdateRequest articleUpdateRequest = objectMapper.readValue(body,
                       ArticleUpdateRequest.class);
               try {
@@ -114,7 +114,7 @@ public class ArticleController implements Controller {
             "api/articles/:articleId",
             (Request request, Response response) -> {
               response.type("application/json");
-              String id = request.params(":articleId");
+              String id = request.params("articleId");
 
               try {
                 ArticleId articleId = new ArticleId(Long.parseLong(id));
@@ -140,7 +140,7 @@ public class ArticleController implements Controller {
             "api/articles/:articleId/comments",
             (Request request, Response response) -> {
               response.type("application/json");
-              String id = request.params(":articleId");
+              String id = request.params("articleId");
               String body = request.body();
               CommentAddRequest commentAddRequest = objectMapper.readValue(body, CommentAddRequest.class);
 
@@ -167,8 +167,8 @@ public class ArticleController implements Controller {
             "api/articles/:articleId/comments/:commentId",
             (Request request, Response response) -> {
               response.type("application/json");
-              String articleId = request.params(":articleId");
-              String commentId = request.params(":commentId");
+              String articleId = request.params("articleId");
+              String commentId = request.params("commentId");
 
               try {
                 articleService.deleteComment(Long.parseLong(articleId), Long.parseLong(commentId));

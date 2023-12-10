@@ -2,7 +2,6 @@ package org.spark.service;
 
 import org.spark.entity.article.Article;
 import org.spark.entity.article.ArticleId;
-import org.spark.entity.comment.Comment;
 import org.spark.entity.comment.CommentId;
 import org.spark.entity.exception.CommentIdNotFoundException;
 import org.spark.repository.ArticleRepository;
@@ -64,10 +63,10 @@ public class ArticleService {
   public CommentId addNewComment(long id, String text) {
     ArticleId articleId = new ArticleId(id);
     Article article = articleRepository.findById(articleId);
-    CommentId commentId = article.getNewCommentId();
-    Comment comment = new Comment(text ,commentId, articleId);
-    article.addComment(comment);
-    return commentId;
+//    CommentId commentId = article.getNewCommentId();
+//    Comment comment = new Comment(text ,commentId, articleId);
+    return article.addComment(text, articleId);
+//    return commentId;
   }
   public void deleteComment(long articleId, long commentId) {
     try {
