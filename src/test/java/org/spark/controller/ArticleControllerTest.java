@@ -20,7 +20,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ArticleControllerTest {
 
@@ -67,29 +67,7 @@ class ArticleControllerTest {
     assertEquals(201, responseArticleAdd.statusCode());
     ArticleCreateResponse articleCreateResponse =
             objectMapper.readValue(responseArticleAdd.body(), ArticleCreateResponse.class);
-    assertEquals(8L, articleCreateResponse.articleId());
-
-    HttpResponse<String> responseCommentAdd = HttpClient.newHttpClient()
-            .send(
-                    HttpRequest.newBuilder()
-                            .POST(
-                                    HttpRequest.BodyPublishers.ofString(
-                                            """
-                                                        {
-                                                          "text": "TEST"
-                                                        }
-                                                    """
-                                    )
-                            )
-                            .uri(URI.create("http://localhost:%d/api/articles/%d/comments".formatted(service.port(), 0L)))
-                            .build(),
-                    HttpResponse.BodyHandlers.ofString(UTF_8)
-            );
-
-    assertEquals(201, responseCommentAdd.statusCode());
-    CommentAddResponse commentAddResponse =
-            objectMapper.readValue(responseCommentAdd.body(), CommentAddResponse.class);
-    assertEquals(0L, commentAddResponse.commentId());
+    assertEquals(0L, articleCreateResponse.articleId());
 
     HttpResponse<String> responseUpdate = HttpClient.newHttpClient()
             .send(
@@ -107,6 +85,28 @@ class ArticleControllerTest {
 
     assertEquals(201, responseUpdate.statusCode());
     assertEquals("{}", responseUpdate.body());
+
+    HttpResponse<String> responseCommentAdd = HttpClient.newHttpClient()
+            .send(
+                    HttpRequest.newBuilder()
+                            .POST(
+                                    HttpRequest.BodyPublishers.ofString(
+                                            """
+                                                        {
+                                                          "text":"TEST"
+                                                        }
+                                                    """
+                                    )
+                            )
+                            .uri(URI.create("http://localhost:%d/api/articles/%d/comments".formatted(service.port(), 0L)))
+                            .build(),
+                    HttpResponse.BodyHandlers.ofString(UTF_8)
+            );
+
+    assertEquals(201, responseCommentAdd.statusCode());
+    CommentAddResponse commentAddResponse =
+            objectMapper.readValue(responseCommentAdd.body(), CommentAddResponse.class);
+    assertEquals(0L, commentAddResponse.commentId());
 
     HttpResponse<String> responseCommentDelete = HttpClient.newHttpClient()
             .send(
