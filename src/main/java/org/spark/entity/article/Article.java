@@ -58,7 +58,7 @@ public class Article {
   }
   public void deleteComment(CommentId commentId) {
     for (Comment comment: comments) {
-      if (commentId.equals(comment.getСommentId())) {
+      if (commentId.equals(comment.getCommentId())) {
         comments.remove(comment);
         return;
       }

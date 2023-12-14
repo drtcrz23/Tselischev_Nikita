@@ -1,0 +1,6 @@
+CREATE TABLE article (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    tags VARCHAR(50)[] NOT NULL DEFAULT '{}',
+    trending BOOLEAN NOT NULL DEFAULT FALSE
+);

@@ -12,7 +12,7 @@ public class Comment {
     this.commentId = commentId;
     this.articleId = articleId;
   }
-  public CommentId getСommentId() {
+  public CommentId getCommentId() {
     return commentId;
   }
   public ArticleId getArticleId() {

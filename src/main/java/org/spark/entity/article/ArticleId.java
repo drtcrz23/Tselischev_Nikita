@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class ArticleId {
 
-  private long articleId;
+  private final long articleId;
 
   public ArticleId(long articleId) {
     this.articleId = articleId;

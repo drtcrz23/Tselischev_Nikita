@@ -24,7 +24,7 @@ public class CommentTest {
     CommentId commentId = new CommentId(1);
     Comment comment = new Comment(text, commentId, articleId);
 
-    assertEquals(commentId, comment.getСommentId());
+    assertEquals(commentId, comment.getCommentId());
   }
 
   @Test
