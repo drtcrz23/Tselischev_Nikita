@@ -118,8 +118,8 @@
                         <exclude>**/template/*</exclude>
                         <exclude>**/*exception/*</exclude>
                         <exclude>**/*exceptions/*</exclude>
-                        <exclude>**/*Controller.*</exclude>
                         <exclude>**/*ArticleFreemarkerController.*</exclude>
+                        <exclude>**/*ArticleFreemarker.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

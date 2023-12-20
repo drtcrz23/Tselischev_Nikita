@@ -12,6 +12,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import postgressql_spark.Application;
+import postgressql_spark.controller.responses.FindArticleResponse;
 import postgressql_spark.repository.SqlArticleRepository;
 import postgressql_spark.repository.SqlCommentRepository;
 import postgressql_spark.service.ArticleService;
@@ -25,7 +26,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Testcontainers
 class ArticleControllerTest {
@@ -168,6 +169,11 @@ class ArticleControllerTest {
             );
 
     assertEquals(201, responseFindArticle.statusCode());
+    FindArticleResponse findArticleResponse =
+            objectMapper.readValue(responseFindArticle.body(), FindArticleResponse.class);
+    assertEquals(1L, findArticleResponse.id());
+    assertTrue(findArticleResponse.tags().contains("weekend"));
+    assertEquals(0, findArticleResponse.commentsCount());
 
     // delete article
     HttpResponse<String> responseToDeleteArticle = HttpClient.newHttpClient()
@@ -182,5 +188,16 @@ class ArticleControllerTest {
     assertEquals(201, responseToDeleteArticle.statusCode());
     assertEquals("{}", responseToDeleteArticle.body());
 
+    HttpResponse<String> responseFindInvalidArticleId = HttpClient.newHttpClient()
+            .send(
+                    HttpRequest.newBuilder()
+                            .GET()
+                            .uri(URI.create("http://localhost:%d/api/articles/%d".formatted(service.port(), 1L)))
+                            .build(),
+                    HttpResponse.BodyHandlers.ofString(UTF_8)
+            );
+
+    assertEquals(400, responseFindInvalidArticleId.statusCode());
   }
+
 }

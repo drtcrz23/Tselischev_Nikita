@@ -12,13 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ArticleFreemarkerController implements Controller {
+public class ArticleFreemarker implements Controller {
 
   private final Service service;
   private final ArticleService articleService;
   private final FreeMarkerEngine freeMarkerEngine;
 
-  public ArticleFreemarkerController(Service service, ArticleService articleService, FreeMarkerEngine freeMarkerEngine) {
+  public ArticleFreemarker(Service service, ArticleService articleService, FreeMarkerEngine freeMarkerEngine) {
     this.service = service;
     this.articleService = articleService;
     this.freeMarkerEngine = freeMarkerEngine;

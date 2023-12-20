@@ -6,7 +6,7 @@ import com.typesafe.config.ConfigFactory;
 import org.flywaydb.core.Flyway;
 import org.jdbi.v3.core.Jdbi;
 import postgressql_spark.controller.ArticleController;
-import postgressql_spark.controller.ArticleFreemarkerController;
+import postgressql_spark.controller.ArticleFreemarker;
 import postgressql_spark.controller.CommentController;
 import postgressql_spark.repository.ArticleRepository;
 import postgressql_spark.repository.CommentRepository;
@@ -55,7 +55,7 @@ public class Main {
                             objectMapper,
                             commentService
                     ),
-                    new ArticleFreemarkerController(
+                    new ArticleFreemarker(
                             service,
                             articleService,
                             TemplateFactory.freeMarkerEngine()
