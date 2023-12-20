@@ -47,9 +47,7 @@ public class SqlArticleRepository implements ArticleRepository {
   @Override
   public Article findById(long id) throws SQLException {
     return jdbi.inTransaction(handle -> {
-      var map = handle.createQuery("SELECT article.id, article.name, article.tags, article.trending, COUNT(count.id) AS comments" +
-                      "FROM article LEFT JOIN comment count ON count.\"articleId\" = article.id" +
-                      " WHERE article.id = :id GROUP BY article.id")
+      var map = handle.createQuery("SELECT article.id, article.name, article.tags, article.trending, COUNT(c.id) AS comments " + "FROM article" + " LEFT JOIN comment c ON c.\"articleId\" = article.id " + "WHERE article.id = :id " + "GROUP BY article.id")
               .bind("id", id)
               .mapToMap()
               .first();

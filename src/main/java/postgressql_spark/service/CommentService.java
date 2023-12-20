@@ -5,7 +5,6 @@ import org.spark.service.exception.CommentDeleteException;
 import postgressql_spark.entity.Article;
 import postgressql_spark.entity.ArticleId;
 import postgressql_spark.entity.Comment;
-import postgressql_spark.entity.CommentId;
 import postgressql_spark.exceptions.ArticleNotFoundException;
 import postgressql_spark.exceptions.CommentNotFoundException;
 import postgressql_spark.repository.CommentRepository;
@@ -37,10 +36,10 @@ public class CommentService {
     }
   }
 
-  public void delete(CommentId commentId) throws CommentDeleteException, SQLException {
+  public void delete(long commentId) throws CommentDeleteException, SQLException {
     try {
       Comment comment = commentRepository.findById(commentId);
-      long articleId = comment.getArticleId();
+      long articleId = comment.articleId();
       if (articleId == 0) {
         throw new CommentNotFoundException(commentId);
       }

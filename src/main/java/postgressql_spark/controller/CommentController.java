@@ -7,7 +7,6 @@ import org.spark.controller.request.CommentAddRequest;
 import org.spark.controller.response.CommentAddResponse;
 import org.spark.controller.response.ErrorResponse;
 import org.spark.service.exception.CommentDeleteException;
-import postgressql_spark.entity.CommentId;
 import postgressql_spark.exceptions.ArticleNotFoundException;
 import postgressql_spark.service.CommentService;
 import spark.Request;
@@ -65,18 +64,18 @@ public class CommentController implements Controller {
       String id = request.params(":id");
 
       try {
-        commentService.delete(new CommentId(Long.parseLong(id)));
+        commentService.delete(Long.parseLong(id));
         response.status(201);
-        LOG.debug("Comment deleted");
+        LOG.debug("Comment successfully deleted");
         return response;
       } catch (CommentDeleteException e) {
         LOG.warn("Cannot delete a comment", e);
         response.status(400);
         return objectMapper.writeValueAsString(new ErrorResponse(e.getMessage()));
       } catch (RuntimeException e) {
-        LOG.error("unexpected error", e);
+        LOG.error("Unhandled error", e);
         response.status(500);
-        return objectMapper.writeValueAsString(new ErrorResponse("server error"));
+        return objectMapper.writeValueAsString(new ErrorResponse("Internal server error"));
       }
     });
   }
